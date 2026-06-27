@@ -1,8 +1,8 @@
 // ===============================
-//  SAS SOG — Service Worker
+//  Task Force Orion SOG — Service Worker
 // ===============================
 
-const CACHE_NAME = 'sas-v1';
+const CACHE_NAME = 'Task Force Orion-v1';
 const STATIC_ASSETS = [
   '/app.html',
   '/login.html',

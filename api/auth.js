@@ -16,7 +16,7 @@ export default {
     try {
       // Health checks
       if (url.pathname === '/health') {
-        return json({ status: 'ok', unit: 'SAS', timestamp: Date.now() });
+        return json({ status: 'ok', unit: 'Task Force Orion', timestamp: Date.now() });
       }
 
       // Discord OAuth callback
@@ -255,7 +255,7 @@ async function postAnnouncement(request, env) {
   }
 
   // Store in KV for app retrieval
-  await env.SAS_KV?.put(`announcement:${message.id}`, JSON.stringify({
+  await env.Task Force Orion_KV?.put(`announcement:${message.id}`, JSON.stringify({
     id: message.id,
     content: content,
     author: user.username,
@@ -302,7 +302,7 @@ async function handleDiscordWebhook(request, env) {
   // Message created in announcements channel
   if (data.channel_id === env.ANNOUNCEMENTS_CHANNEL_ID && data.type === 0) {
     // Store announcement for app
-    await env.SAS_KV?.put(`announcement:${data.id}`, JSON.stringify({
+    await env.Task Force Orion_KV?.put(`announcement:${data.id}`, JSON.stringify({
       id: data.id,
       content: data.content,
       author: data.author.global_name || data.author.username,
@@ -323,7 +323,7 @@ async function handleDiscordWebhook(request, env) {
 // Data handlers
 async function getUnitStatus(env) {
   // Get from KV or return default
-  const status = await env.SAS_KV?.get('unit:status');
+  const status = await env.Task Force Orion_KV?.get('unit:status');
   if (status) return json(JSON.parse(status));
   
   return json({
@@ -336,21 +336,21 @@ async function getUnitStatus(env) {
 async function getActiveOperations(request, env) {
   const auth = request.headers.get('Authorization');
   // Verify auth and return from KV/database
-  const ops = await env.SAS_KV?.get('operations:active');
+  const ops = await env.Task Force Orion_KV?.get('operations:active');
   return json(ops ? JSON.parse(ops) : []);
 }
 
 async function getPersonnel(request, env) {
   const auth = request.headers.get('Authorization');
   // Verify auth and return from KV/database
-  const personnel = await env.SAS_KV?.get('personnel:list');
+  const personnel = await env.Task Force Orion_KV?.get('personnel:list');
   return json(personnel ? JSON.parse(personnel) : []);
 }
 
 async function getAdminStats(request, env) {
   const auth = request.headers.get('Authorization');
   // Verify command role
-  const stats = await env.SAS_KV?.get('admin:stats');
+  const stats = await env.Task Force Orion_KV?.get('admin:stats');
   return json(stats ? JSON.parse(stats) : {
     total: 0,
     active: 0,
@@ -362,12 +362,12 @@ async function getAdminStats(request, env) {
 async function getAuditLog(request, env) {
   const auth = request.headers.get('Authorization');
   // Verify command role
-  const logs = await env.SAS_KV?.get('admin:audit');
+  const logs = await env.Task Force Orion_KV?.get('admin:audit');
   return json(logs ? JSON.parse(logs) : []);
 }
 
 async function logAudit(env, action, details) {
-  const existing = await env.SAS_KV?.get('admin:audit');
+  const existing = await env.Task Force Orion_KV?.get('admin:audit');
   const logs = existing ? JSON.parse(existing) : [];
   
   logs.unshift({
@@ -379,7 +379,7 @@ async function logAudit(env, action, details) {
   // Keep last 1000 entries
   if (logs.length > 1000) logs.pop();
   
-  await env.SAS_KV?.put('admin:audit', JSON.stringify(logs));
+  await env.Task Force Orion_KV?.put('admin:audit', JSON.stringify(logs));
 }
 
 function json(data, status = 200) {

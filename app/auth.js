@@ -80,7 +80,7 @@ class AuthManager {
   }
 
   setSession(data) {
-    localStorage.setItem('sas_user', JSON.stringify({
+    localStorage.setItem('Task Force Orion_user', JSON.stringify({
       username: data.username,
       roles: data.roles || ['member'],
       avatar: data.avatar,
@@ -90,7 +90,7 @@ class AuthManager {
   }
 
   getSession() {
-    const stored = localStorage.getItem('sas_user');
+    const stored = localStorage.getItem('Task Force Orion_user');
     if (!stored) return null;
     
     try {
@@ -107,7 +107,7 @@ class AuthManager {
   }
 
   clearSession() {
-    localStorage.removeItem('sas_user');
+    localStorage.removeItem('Task Force Orion_user');
     this.user = null;
   }
 

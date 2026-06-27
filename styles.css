@@ -512,7 +512,7 @@ body {
   line-height: 1.7;
 }
 
-.SAS-logo {
+.sas-logo {
   height: 70px;           /* Adjust this value to make it smaller/bigger */
   width: auto;            /* Maintains aspect ratio */
   max-width: 150px;       /* Prevents it from getting too wide */

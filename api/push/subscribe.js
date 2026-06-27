@@ -3,7 +3,7 @@ import webpush from 'web-push';
 let subs = [];
 
 webpush.setVapidDetails(
-  'mailto:admin@sas-sog.com',
+  'mailto:admin@Task Force Orion-sog.com',
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
